@@ -11,8 +11,7 @@ create table agency
     address_2    varchar(300),
     contact_1    varchar(100),
     contact_2    varchar(100)
-)
-    using ???;
+);
 
 alter table agency
     owner to postgres;
@@ -29,8 +28,7 @@ create table o_scope
     updated_time timestamp,
     updated_by   integer,
     created_by   integer
-)
-    using ???;
+);
 
 alter table o_scope
     owner to postgres;
@@ -43,8 +41,7 @@ create table cms_scope_type
     scope_level_name varchar(100),
     created_time     timestamp,
     is_deleted       integer
-)
-    using ???;
+);
 
 alter table cms_scope_type
     owner to postgres;
@@ -58,8 +55,7 @@ create table o_scope_template_mapping
     scope_type_id integer,
     filter_id     integer,
     created_time  timestamp
-)
-    using ???;
+);
 
 alter table o_scope_template_mapping
     owner to postgres;
@@ -77,14 +73,13 @@ create table e_address
     country_id   integer,
     created_time timestamp,
     created_by   integer
-)
-    using ???;
+);
 
 alter table e_address
     owner to postgres;
 
 create unique index e_address_e_address_id_uindex
-    on e_address using ??? (e_address_id);
+    on e_address (e_address_id);
 
 create table employee
 (
@@ -118,8 +113,7 @@ create table employee
     temp_field_3_value   varchar(2000),
     audit_remark         varchar(300),
     profile_pic_id       bigint
-)
-    using ???;
+);
 
 alter table employee
     owner to postgres;
@@ -136,8 +130,7 @@ create table m_city
     description  text,
     m_longitude  double precision,
     m_latitude   double precision
-)
-    using ???;
+);
 
 alter table m_city
     owner to postgres;
@@ -150,8 +143,7 @@ create table m_country
     m_country_name varchar(100),
     description    text,
     is_deleted     integer
-)
-    using ???;
+);
 
 alter table m_country
     owner to postgres;
@@ -165,8 +157,7 @@ create table m_state
     m_country_id integer,
     is_deleted   integer,
     description  text
-)
-    using ???;
+);
 
 alter table m_state
     owner to postgres;
@@ -179,8 +170,7 @@ create table m_location_type
     location_name      varchar(100),
     description        text,
     is_deleted         integer
-)
-    using ???;
+);
 
 alter table m_location_type
     owner to postgres;
@@ -197,8 +187,7 @@ create table m_module
     icon            varchar(50),
     is_deleted      integer default 0 not null,
     application     varchar(200)
-)
-    using ???;
+);
 
 alter table m_module
     owner to postgres;
@@ -211,8 +200,7 @@ create table m_module_actions
     action_name varchar(100)      not null,
     description varchar(300),
     is_deleted  integer default 0 not null
-)
-    using ???;
+);
 
 alter table m_module_actions
     owner to postgres;
@@ -225,8 +213,7 @@ create table m_organisation_type
     o_type      varchar(100),
     description text,
     is_deleted  integer
-)
-    using ???;
+);
 
 alter table m_organisation_type
     owner to postgres;
@@ -241,8 +228,7 @@ create table m_role
     description text,
     m_role_type integer,
     is_admin    integer
-)
-    using ???;
+);
 
 alter table m_role
     owner to postgres;
@@ -256,8 +242,7 @@ create table m_role_applications
     application_code      varchar(100),
     permissions           jsonb,
     is_deleted            integer
-)
-    using ???;
+);
 
 alter table m_role_applications
     owner to postgres;
@@ -272,8 +257,7 @@ create table m_role_module
     permissions      jsonb,
     is_deleted       integer,
     module_name      varchar(100)
-)
-    using ???;
+);
 
 alter table m_role_module
     owner to postgres;
@@ -298,8 +282,7 @@ create table o_area
     temp_field_1 varchar(100),
     temp_field_2 varchar(100),
     temp_field_3 varchar(100)
-)
-    using ???;
+);
 
 alter table o_area
     owner to postgres;
@@ -323,8 +306,7 @@ create table o_region
     temp_field_1 varchar(100),
     temp_field_2 varchar(100),
     temp_field_3 varchar(100)
-)
-    using ???;
+);
 
 alter table o_region
     owner to postgres;
@@ -359,8 +341,7 @@ create table o_site
     latitude      varchar(20),
     m_site_type   varchar(200),
     zone          varchar(20)
-)
-    using ???;
+);
 
 alter table o_site
     owner to postgres;
@@ -379,8 +360,7 @@ create table o_role
     updated_by   integer,
     updated_time timestamp,
     is_editable  integer default 1 not null
-)
-    using ???;
+);
 
 alter table o_role
     owner to postgres;
@@ -393,8 +373,7 @@ create table o_role_module_actions
     role_id               serial,
     module_code           varchar(100),
     permissions           json not null
-)
-    using ???;
+);
 
 alter table o_role_module_actions
     owner to postgres;
@@ -427,14 +406,13 @@ create table organisation
     o_pic_id                   bigint,
     default_geo_time           varchar(45) default '0'::character varying,
     default_geo_radius         varchar(45) default '0'::character varying
-)
-    using ???;
+);
 
 alter table organisation
     owner to postgres;
 
 create index ix_o_type_id
-    on organisation using ??? (o_type_id);
+    on organisation (o_type_id);
 
 create table o_relation
 (
@@ -449,17 +427,16 @@ create table o_relation
     updated_by    bigint,
     updated_time  timestamp,
     o_type        integer default 3
-)
-    using ???;
+);
 
 alter table o_relation
     owner to postgres;
 
 create index ix_child_org_id
-    on o_relation using ??? (child_org_id);
+    on o_relation (child_org_id);
 
 create index ix_parent_org_id
-    on o_relation using ??? (parent_org_id);
+    on o_relation (parent_org_id);
 
 create table category_master
 (
@@ -470,8 +447,7 @@ create table category_master
     category_group integer,
     task_id        integer,
     column_name    varchar(100)
-)
-    using ???;
+);
 
 alter table category_master
     owner to postgres;
@@ -502,8 +478,7 @@ create table product_master
     extra2       varchar(200),
     created_time timestamp,
     image_url    jsonb
-)
-    using ???;
+);
 
 alter table product_master
     owner to postgres;
@@ -534,8 +509,7 @@ create table users
     site_id               integer,
     imei                  text,
     fcm_token             text
-)
-    using ???;
+);
 
 alter table users
     owner to postgres;
@@ -548,14 +522,13 @@ create table m_scope_type
     scope_level_name varchar(100),
     created_time     timestamp,
     is_deleted       integer
-)
-    using ???;
+);
 
 alter table m_scope_type
     owner to postgres;
 
 create unique index m_scope_type_scope_type_id_uindex
-    on m_scope_type using ??? (scope_type_id);
+    on m_scope_type (scope_type_id);
 
 create table o_zone
 (
@@ -594,8 +567,7 @@ create table o_zone
     is_inward_zone           integer,
     is_shop_floor            integer,
     zone_code                text
-)
-    using ???;
+);
 
 alter table o_zone
     owner to postgres;
@@ -621,8 +593,7 @@ create table o_site_zone
     temp_field_1   varchar(50),
     temp_field_2   varchar(50),
     temp_field_3   varchar(50)
-)
-    using ???;
+);
 
 alter table o_site_zone
     owner to postgres;
@@ -648,8 +619,7 @@ create table epc_status
     prev_epc                varchar(50),
     stock_transfer_id       integer,
     additional_info         jsonb
-)
-    using ???;
+);
 
 alter table epc_status
     owner to postgres;
@@ -665,8 +635,7 @@ create table stock_transfer_processes
     reference_no_name      varchar(150),
     integration_table_name varchar(150),
     inward_outward         varchar(150)
-)
-    using ???;
+);
 
 alter table stock_transfer_processes
     owner to postgres;
@@ -685,8 +654,7 @@ create table stock_transfer_info
     updatedt          timestamp,
     inward_outward    varchar(50),
     process_id        integer
-)
-    using ???;
+);
 
 alter table stock_transfer_info
     owner to postgres;
@@ -712,8 +680,7 @@ create table stock_transfer_items
     status                  varchar(50),
     create_dt               timestamp,
     update_dt               timestamp
-)
-    using ???;
+);
 
 alter table stock_transfer_items
     owner to postgres;
@@ -738,8 +705,7 @@ create table epc_inward
     user_id                 integer,
     tag_type                varchar(50),
     process_id              integer
-)
-    using ???;
+);
 
 alter table epc_inward
     owner to postgres;
@@ -763,8 +729,7 @@ create table epc_outward
     user_id                 integer,
     tag_type                varchar(50),
     process_id              integer
-)
-    using ???;
+);
 
 alter table epc_outward
     owner to postgres;
@@ -787,8 +752,7 @@ create table epc_transactions
     created_time      timestamp,
     device_id         integer,
     additional_info   varchar(50)
-)
-    using ???;
+);
 
 alter table epc_transactions
     owner to postgres;
@@ -807,8 +771,7 @@ create table stock_take_epcs
     created_time  timestamp,
     device_id     integer,
     session_id    integer
-)
-    using ???;
+);
 
 alter table stock_take_epcs
     owner to postgres;
@@ -823,8 +786,7 @@ create table customer_stock
     stock_date   timestamp,
     site_id      integer,
     created_time timestamp
-)
-    using ???;
+);
 
 alter table customer_stock
     owner to postgres;
@@ -842,8 +804,7 @@ create table "epc_detected_tx "
     "application_id " varchar(50),
     site_id           integer,
     sz_id             integer
-)
-    using ???;
+);
 
 alter table "epc_detected_tx "
     owner to postgres;
@@ -867,8 +828,7 @@ create table stock_take_sessions
     percentage_complete varchar(50),
     session_name        varchar(100),
     session_start_time  timestamp
-)
-    using ???;
+);
 
 alter table stock_take_sessions
     owner to postgres;
@@ -885,15 +845,14 @@ create table session_count_integration
     epc_count     integer,
     barcode_count integer,
     session_id    integer
-)
-    using ???;
+);
 
 alter table session_count_integration
     owner to postgres;
 
 create table o_readers
 (
-    reader_id            integer not null
+    reader_id            serial
         constraint readers_pk
             primary key,
     reader_code          varchar(50),
@@ -910,8 +869,7 @@ create table o_readers
     is_active            integer,
     is_deleted           integer,
     o_id                 integer
-)
-    using ???;
+);
 
 alter table o_readers
     owner to postgres;
@@ -959,8 +917,7 @@ create table o_panel
     is_registered              integer,
     register_time              timestamp,
     registered_users           integer
-)
-    using ???;
+);
 
 alter table o_panel
     owner to postgres;
@@ -974,8 +931,7 @@ create table o_reader_application
     reader_app_name varchar(50),
     is_deleted      integer,
     created_time    timestamp
-)
-    using ???;
+);
 
 alter table o_reader_application
     owner to postgres;
@@ -989,8 +945,7 @@ create table m_panel_type
     panel_type_name       varchar(50),
     is_deleted            integer,
     created_time          timestamp
-)
-    using ???;
+);
 
 alter table m_panel_type
     owner to postgres;
@@ -1012,8 +967,7 @@ create table o_user_panel
     updated_by   integer,
     created_time timestamp,
     updated_time timestamp
-)
-    using ???;
+);
 
 alter table o_user_panel
     owner to postgres;
@@ -1037,8 +991,7 @@ create table app_update
     git_hash_num text,
     app_id       varchar(500),
     is_enable    boolean default true
-)
-    using ???;
+);
 
 alter table app_update
     owner to postgres;
@@ -1052,8 +1005,7 @@ create table app_settings
     value        varchar(200),
     updated_time timestamp,
     created_time timestamp
-)
-    using ???;
+);
 
 alter table app_settings
     owner to postgres;
@@ -1067,8 +1019,7 @@ create table automail_integration
     "order" varchar(150),
     item    varchar(150),
     stock   varchar(150)
-)
-    using ???;
+);
 
 alter table automail_integration
     owner to postgres;
@@ -1086,8 +1037,7 @@ create table encode_session
     created_time timestamp,
     updated_time timestamp,
     status       varchar(50)
-)
-    using ???;
+);
 
 alter table encode_session
     owner to postgres;
@@ -1102,25 +1052,9 @@ create table serial_number
     updated_time  timestamp,
     created_time  timestamp,
     barcode       varchar(100)
-)
-    using ???;
+);
 
 alter table serial_number
-    owner to postgres;
-
-create table encode_items
-(
-    e_item_id    serial
-        constraint encode_items_pk
-            primary key,
-    session_id   integer,
-    product_code varchar(100),
-    qty          integer,
-    created_time timestamp
-)
-    using ???;
-
-alter table encode_items
     owner to postgres;
 
 create table encoding
@@ -1144,9 +1078,22 @@ create table encoding
     read_power             varchar(30),
     write_power            varchar(30),
     time_taken             timestamp
-)
-    using ???;
+);
 
 alter table encoding
+    owner to postgres;
+
+create table encode_items
+(
+    e_item_id    serial
+        constraint encode_items_pk
+            primary key,
+    session_id   integer,
+    product_code varchar(100),
+    qty          integer,
+    created_time timestamp
+);
+
+alter table encode_items
     owner to postgres;
 
