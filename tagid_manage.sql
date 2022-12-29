@@ -447,7 +447,7 @@ create table category_master
     category_group integer,
     task_id        integer,
     column_name    varchar(100),
-    stock_take_tree_view         varchar(100)
+    stock_take_tree_view         bool
 )
 
 alter table category_master
