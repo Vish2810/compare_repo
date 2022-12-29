@@ -478,7 +478,7 @@ alter table category_master
 
 create table product_master
 (
-    product_id   integer default nextval('new_product_master_product_id_seq'::regclass) not null
+    product_id   serial
         constraint new_product_master_pk
             primary key,
     product_code varchar(200),
@@ -499,7 +499,9 @@ create table product_master
     c14          varchar(200),
     c15          varchar(200),
     extra1       varchar(200),
-    extra2       varchar(200)
+    extra2       varchar(200),
+    created_time timestamp,
+    image_url    jsonb
 )
     using ???;
 
@@ -530,7 +532,8 @@ create table users
     role_id               integer,
     email                 varchar(80),
     site_id               integer,
-    imei                  text
+    imei                  text,
+    fcm_token             text
 )
     using ???;
 
@@ -861,7 +864,9 @@ create table stock_take_sessions
     schedule_id         integer,
     notification_status integer,
     data                text,
-    percentage_complete varchar(50)
+    percentage_complete varchar(50),
+    session_name        varchar(100),
+    session_start_time  timestamp
 )
     using ???;
 
@@ -888,7 +893,7 @@ alter table session_count_integration
 
 create table o_readers
 (
-    reader_id            integer default nextval('readers_reader_id_seq'::regclass) not null
+    reader_id            integer not null
         constraint readers_pk
             primary key,
     reader_code          varchar(50),
@@ -949,7 +954,11 @@ create table o_panel
     description                text,
     temp_field_1               text,
     temp_field_2               text,
-    temp_field_3               text
+    temp_field_3               text,
+    register_token             varchar(50),
+    is_registered              integer,
+    register_time              timestamp,
+    registered_users           integer
 )
     using ???;
 
@@ -1007,5 +1016,137 @@ create table o_user_panel
     using ???;
 
 alter table o_user_panel
+    owner to postgres;
+
+create table app_update
+(
+    m_id         serial
+        constraint mobile_update_pk
+            primary key,
+    version_name varchar(500),
+    version_code integer,
+    release_date timestamp,
+    build_date   timestamp,
+    change_log   text,
+    url          varchar(500),
+    file_name    varchar(500),
+    app_type     varchar(500),
+    is_prod      boolean,
+    created      timestamp,
+    updated      timestamp,
+    git_hash_num text,
+    app_id       varchar(500),
+    is_enable    boolean default true
+)
+    using ???;
+
+alter table app_update
+    owner to postgres;
+
+create table app_settings
+(
+    setting_id   serial
+        primary key,
+    setting_name varchar(200),
+    group_name   varchar(200),
+    value        varchar(200),
+    updated_time timestamp,
+    created_time timestamp
+)
+    using ???;
+
+alter table app_settings
+    owner to postgres;
+
+create table automail_integration
+(
+    aid     serial
+        constraint automail_integration_pk
+            primary key,
+    uid     integer,
+    "order" varchar(150),
+    item    varchar(150),
+    stock   varchar(150)
+)
+    using ???;
+
+alter table automail_integration
+    owner to postgres;
+
+create table encode_session
+(
+    e_session_id serial
+        constraint encode_session_pk
+            primary key,
+    session_type varchar(50),
+    session_name varchar(50),
+    ref_number   varchar(50),
+    user_id      integer,
+    site_id      integer,
+    created_time timestamp,
+    updated_time timestamp,
+    status       varchar(50)
+)
+    using ???;
+
+alter table encode_session
+    owner to postgres;
+
+create table serial_number
+(
+    serial_id     serial
+        constraint serial_number_pk
+            primary key,
+    serial_number integer,
+    description   varchar(100),
+    updated_time  timestamp,
+    created_time  timestamp,
+    barcode       varchar(100)
+)
+    using ???;
+
+alter table serial_number
+    owner to postgres;
+
+create table encode_items
+(
+    e_item_id    serial
+        constraint encode_items_pk
+            primary key,
+    session_id   integer,
+    product_code varchar(100),
+    qty          integer,
+    created_time timestamp
+)
+    using ???;
+
+alter table encode_items
+    owner to postgres;
+
+create table encoding
+(
+    encode_id              serial
+        constraint encoding_pk
+            primary key,
+    epc                    varchar(100),
+    prev_epc               varchar(100),
+    product_code           varchar(100),
+    pre_product_code       varchar(100),
+    serial_number          varchar(100),
+    previous_serial_number integer,
+    status                 varchar(30),
+    ref_number             varchar(100),
+    user_id                integer,
+    site_id                integer,
+    panel_id               integer,
+    error_type             varchar(30),
+    created_time           timestamp,
+    read_power             varchar(30),
+    write_power            varchar(30),
+    time_taken             timestamp
+)
+    using ???;
+
+alter table encoding
     owner to postgres;
 
