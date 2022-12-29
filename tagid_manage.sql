@@ -446,8 +446,9 @@ create table category_master
     category_level integer,
     category_group integer,
     task_id        integer,
-    column_name    varchar(100)
-);
+    column_name    varchar(100),
+    stock_take_tree_view         varchar(100)
+)
 
 alter table category_master
     owner to postgres;
